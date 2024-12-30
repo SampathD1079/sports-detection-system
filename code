@@ -1,0 +1,135 @@
+import cv2 as cv
+import torch
+import tkinter as tk
+from tkinter import END,messagebox
+import numpy as np
+
+vid=cv.VideoCapture("trial3.mp4")
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5s.pt', trust_repo='check')
+#vid=cv.VideoCapture("trial3.mp4")
+root=tk.Tk()
+root.title("Sports Detector")
+root.geometry("250x160")
+root.config(bg="#4287f5")
+a,b,c,d,e,f,g,h=0,0,0,0,0,0,0,0
+
+while vid.isOpened():
+    ret,frame=vid.read()
+    if frame is not None and not frame.size==0:
+        frame = cv.resize(frame, (1250, 700))
+    
+    if not ret:
+        print("Video done")
+        break
+    results=model(frame)
+    frame=results.render()[0]
+    cv.imshow('YOLOv5 Sports Detection',frame)
+    #Tennis Racket
+    if 38 in results.pred[0][:, 5]:
+        txt="Tennis racket detected"
+        
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=10)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if a!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        a=1
+
+    #Sports Ball
+    elif 32 in results.pred[0][:, 5]:
+        txt="Sports Ball detected"
+    
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=50)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if b!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        b=1
+
+    #Baseball Bat
+    elif 34 in results.pred[0][:, 5]:
+        txt="Baseball Bat detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=90)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if c!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        c=1
+
+    #SkateBoard
+    elif 36 in results.pred[0][:, 5]:
+        txt="Skateboard detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=10)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if d!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        d=1
+
+    #SurfBoard
+    elif 37 in results.pred[0][:, 5]:
+        txt="Surfboard detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=50)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if e!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        e=1
+
+    #Skis
+    elif 30 in results.pred[0][:, 5]:
+        txt="Skis detected"
+    
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=90)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if f!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        f=1
+
+    #Snowboard
+    elif 31 in results.pred[0][:, 5]:
+        txt="Snowboard detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=50)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if g!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        g=1
+
+
+    #Kite
+    elif 33 in results.pred[0][:, 5]:
+        txt="Kite detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=10)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if g!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        g=1
+
+    #Frisbee
+    elif 29 in results.pred[0][:, 5]:
+        txt="Frisbee detected"
+
+        obj=tk.Label(root,text=txt,bg="#073af2",fg="#fcfcfc",relief="ridge",bd=6,font=("Times",11)).place(x=10,y=10)
+        root.attributes('-topmost',True)
+        root.overrideredirect(True)
+        if h!=1:
+            l1=tk.messagebox.showinfo('info',txt)
+        h=1
+    
+        
+
+        
+    if cv.waitKey(1) & 0xFF ==ord('q'):
+        break
+vid.release()
+cv.destroyAllWindows()
+
+root.mainloop()
