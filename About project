@@ -1,0 +1,46 @@
+# Sports Object Detection with YOLOv5
+
+## **Abstract**
+This project uses the YOLOv5 model, trained on the COCO dataset, to detect and classify sports objects like balls, tennis rackets, and skateboards. It integrates a Tkinter-based GUI to display pop-up notifications and object names when detected, achieving high accuracy and practical applications in sports analytics and image understanding.
+
+---
+
+## **Introduction**
+This project leverages YOLOv5 and the COCO dataset for sports object detection and classification. The system features a Tkinter GUI for user-friendly interaction, making it useful for sports analytics and image processing.
+
+---
+
+## **Methodology**
+
+1. **Data Preparation**: Trained YOLOv5 on COCO dataset sports categories.
+2. **Preprocessing**: Resized and normalized images.
+3. **Detection**: Used YOLOv5 for inference and classification.
+4. **GUI Integration**: Tkinter for pop-up notifications and name overlays.
+5. **Testing**: Manual testing for accuracy and responsiveness.
+6. **Deployment**: Packaged with dependencies and documentation.
+
+---
+
+## **Results**
+- **Detection**: Accurate sports object identification.
+- **GUI**: Intuitive and responsive user interface.
+- **Performance**: Reliable detection with detailed documentation.
+
+---
+
+## **Conclusion**
+The project successfully integrates YOLOv5 with Tkinter, offering a robust tool for sports object detection and classification with a user-friendly interface.
+
+---
+
+## **Future Scope**
+
+1. **Optimize Performance**: Model compression and efficiency improvements.
+2. **Enhance GUI**: Real-time video support and multi-language features.
+3. **Cloud Integration**: Remote accessibility.
+4. **Expand Domains**: Wildlife, industrial, or healthcare applications.
+5. **Real-Time Improvements**: Boost speed for robotics and autonomous systems.
+
+---
+
+
